@@ -111,6 +111,14 @@ public class Rate {
                 return price;
             }
         }
+        if (kind==CarParkKind.STAFF){
+            if(price.compareTo(new BigDecimal(16)) > 0 ) {
+                return new BigDecimal(16);
+            }else{
+                return price;
+            }
+
+        }
 
         if (kind==CarParkKind.STUDENT){
             if(price.compareTo(new BigDecimal(5.50)) > 0){
