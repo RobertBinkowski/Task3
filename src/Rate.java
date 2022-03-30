@@ -1,4 +1,4 @@
-package cm;
+package src;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Rate {
     private ArrayList<Period> normal = new ArrayList<>();
 
     public Rate(CarParkKind kind, BigDecimal normalRate, BigDecimal reducedRate, ArrayList<Period> reducedPeriods,
-            ArrayList<Period> normalPeriods) {
+                ArrayList<Period> normalPeriods) {
         if (reducedPeriods == null || normalPeriods == null) {
             throw new IllegalArgumentException("periods cannot be null");
         }
@@ -78,7 +78,7 @@ public class Rate {
     /**
      * checks if a period is a valid addition to a collection of periods
      * 
-     * @param period the Period addition
+     * @param period the src.Period addition
      * @param list   the collection of periods to check
      * @return true if the period does not overlap in the collecton of periods
      */

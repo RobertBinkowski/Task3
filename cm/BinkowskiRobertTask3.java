@@ -1,19 +1,20 @@
-// package cm;
-
-import cm.CarParkKind;
-import cm.Period;
-import cm.Rate;
+package cm;
 
 import org.junit.jupiter.api.Test;
+import src.CarParkKind;
+import src.Period;
+import src.Rate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-class binkowskiRobertTest {
-
+public class BinkowskiRobertTask3 {
     @Test
     public void test1() {
 
@@ -174,4 +175,20 @@ class binkowskiRobertTest {
         assertThrows(IllegalArgumentException.class, () -> rate.calculate(new Period(-5, 17)));
     }
 
+    // Task 3 Section
+    @Test
+    public void test25(){
+        BigDecimal normalRate = new BigDecimal(10);
+        BigDecimal reducedRate = new BigDecimal(8);
+        ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(1,3), new Period(4,5)));
+        ArrayList<Period> normalPeriods = new ArrayList<>((Arrays.asList(new Period(5,8), new Period(8,11))));
+
+        CarParkKind kind = CarParkKind.VISITOR;
+
+        Period periodStay = new Period(5,7);
+        Rate r = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+
+        assertEquals(new BigDecimal(5),r.calculate(periodStay));
+
+    }
 }
