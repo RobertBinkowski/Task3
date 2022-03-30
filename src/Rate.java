@@ -112,6 +112,14 @@ public class Rate {
             }
         }
 
+        if (kind==CarParkKind.STUDENT){
+            if(price.compareTo(new BigDecimal(5.50)) > 0){
+                return  price.multiply(new BigDecimal(0.75));
+            }else{
+                return price;
+            }
+        }
+
         if (kind==CarParkKind.MANAGEMENT){
             if(price.compareTo(new BigDecimal(4)) < 0){
                 return new BigDecimal(4);
