@@ -1,6 +1,7 @@
 package src;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Rate {
         if (!isValidPeriods(reducedPeriods, normalPeriods)) {
             throw new IllegalArgumentException("The periods overlaps");
         }
+
         this.kind = kind;
         this.hourlyNormalRate = normalRate;
         this.hourlyReducedRate = reducedRate;
@@ -95,6 +97,24 @@ public class Rate {
     public BigDecimal calculate(Period periodStay) {
         int normalRateHours = periodStay.occurences(normal);
         int reducedRateHours = periodStay.occurences(reduced);
+
+        BigDecimal price = (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
+
+        if (kind==CarParkKind.VISITOR){
+            if(price.compareTo(new BigDecimal(10)) <= 0){
+                return new BigDecimal(0);
+            }
+            else{
+                MathContext mc = new MathContext(2);
+                price = price.subtract(new BigDecimal(10,mc));
+                price = price.divide(new BigDecimal(2,mc));
+                return price;
+            }
+        }
+
+
+
+
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
                 this.hourlyReducedRate.multiply(BigDecimal.valueOf(reducedRateHours)));
     }
