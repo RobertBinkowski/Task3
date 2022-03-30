@@ -262,4 +262,19 @@ public class BinkowskiRobertTask3 {
         assertEquals(new BigDecimal(16),r.calculate(periodStay));
     }
 
+    @Test
+    //Test charge
+    public void newTest7(){
+        BigDecimal normalRate = new BigDecimal(5);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(4,8), new Period(8,11)));
+        ArrayList<Period> normalPeriods = new ArrayList<>(Arrays.asList(new Period(11,16), new Period(17,21)));
+
+        CarParkKind kind = CarParkKind.STAFF;
+        Period periodStay = new Period(11,12);
+        Rate r = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        assertEquals(new BigDecimal(5),r.calculate(periodStay));
+    }
+
+
 }
