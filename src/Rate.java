@@ -112,7 +112,13 @@ public class Rate {
             }
         }
 
-
+        if (kind==CarParkKind.MANAGEMENT){
+            if(price.compareTo(new BigDecimal(4)) < 0){
+                return new BigDecimal(4);
+            }else{
+                return price;
+            }
+        }
 
 
         return (this.hourlyNormalRate.multiply(BigDecimal.valueOf(normalRateHours))).add(
