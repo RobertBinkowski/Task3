@@ -177,7 +177,8 @@ public class BinkowskiRobertTask3 {
 
     // Task 3 Section
     @Test
-    public void test25(){
+    //Test the visitor rate
+    public void newTest1(){
         BigDecimal normalRate = new BigDecimal(10);
         BigDecimal reducedRate = new BigDecimal(8);
         ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(1,3), new Period(4,5)));
@@ -189,6 +190,20 @@ public class BinkowskiRobertTask3 {
         Rate r = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
 
         assertEquals(new BigDecimal(5),r.calculate(periodStay));
-
     }
+
+    @Test
+    //test minimum value
+    public void newTest2(){
+        BigDecimal normalRate = new BigDecimal(4);
+        BigDecimal reducedRate = new BigDecimal(2);
+        ArrayList<Period> reducedPeriods = new ArrayList<>(Arrays.asList(new Period(1,3), new Period(4,5)));
+        ArrayList<Period> normalPeriods = new ArrayList<>(Arrays.asList(new Period(7,10), new Period(11,12)));
+
+        CarParkKind kind = CarParkKind.MANAGEMENT;
+        Period periodStay = new Period(1,2);
+        Rate r = new Rate(kind, normalRate, reducedRate, reducedPeriods, normalPeriods);
+        assertEquals(new BigDecimal(4),r.calculate(periodStay));
+    }
+
 }
